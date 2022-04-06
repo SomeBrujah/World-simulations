@@ -1,62 +1,64 @@
-import Human from "./human.js";
-import Man from "./man.js";
+const humanClassJS = require('./human');
+const helpFunctionJS = require('./helpFunction');
+const { Man } = require('./man');
+const WOMAN_NAMES = helpFunctionJS.WOMAN_NAMES;
+const MAN_NAMES = helpFunctionJS.MAN_NAMES;
+const EYE_COLORS = humanClassJS.EYE_COLORS;
+const { getRandomGender } = require('./helpFunction');
+const getRandomEyeColor = humanClassJS.getRandomEyeColor;
+const getRandomManName = helpFunctionJS.getRandomManName;
+const getRandomWomanName = helpFunctionJS.getRandomWomanName;
+const defineChildEyeColor = helpFunctionJS.defineChildEyeColor;
+const Human = humanClassJS.Human;
 
-function getRandomManName(){
-    const names = ['James', 'Joshua', 'Jack', 'Mat', 'Tom', 'Max'];
-    return names[Math.floor(Math.random()*(names.length))];
-}
-function getRandomWomanName(){
-    const names = ['Maria', 'Jessy', 'Moira', 'Ann', 'Dafni', 'Rose'];
-    return names[Math.floor(Math.random()*(names.length))];
-}
-export default class Woman extends Human {
-    constructor(name, world) {
+class Woman extends Human {
+    constructor(name) {
         super();
         this.name = name;
-        this.world = world;
+        this.world = null;
         this.live();
+        this.wasPregnantAge = null;
     }
 
     live() {
         const life = setInterval(() => {
             this.age++;
-            // console.log(this);
             if (this.age === this.lifeDuration) {
-                console.log(`${this.name} went to heaven...`)
-                // console.log(this.populate);
+                this.world.anotherWorld.push(this);
                 clearInterval(life);
+                this.world.population.splice(this.world.population.indexOf(this), 1)
             }
-            if (this.age >= 18 && (((this.age - 18) % 5) === 0) && this.age < 50) {
+            if (this.age >= 18 && this.age < 50) {
+                if (this.wasPregnantAge !== null && this.age !== this.wasPregnantAge+4) {
+                    return;
+                }
                 this.reproduce();
-                // console.log(this.world);
             }
-        }, 100)
+        }, 500)
     }
+
     reproduce() {
-        let man = this.findMan();
-        let gender = Math.floor(Math.random()*2);
-        if(gender === 1) {
-            this.world["populate"].push(
-                new Man(
-                    getRandomManName(),
-                    this.world
-                )
-            );
+        let love = this.findMan();
+        let gender = getRandomGender();
+        if (gender === 'male') {
+            let man = new Man(getRandomManName(MAN_NAMES));
+            man.eyeColor = defineChildEyeColor(love, this, EYE_COLORS);
+            this.world.addCreature(man);
         } else {
-            this.world["populate"].push(
-                new Woman(
-                    getRandomWomanName(),
-                    this.world
-                )
-            );
+            let woman = new Woman(getRandomWomanName(WOMAN_NAMES));
+            woman.eyeColor = defineChildEyeColor(love, this, EYE_COLORS);
+            this.world.addCreature(woman);
         }
-        
+        this.wasPregnantAge = this.age;
     }
+
     findMan() {
-        let person = null;
-        do {
-            person = this.world["populate"][Math.floor(Math.random() * this.world["populate"].length)]
-        } while (person instanceof Man && person.age >= 18);
-        return person;
+        let mans = this.world.population.filter((person) => { return (person instanceof Man) });
+        let man = mans[Math.floor(Math.random() * mans.length)]
+        return man;
     }
+}
+
+module.exports = {
+    'Woman': Woman
 }

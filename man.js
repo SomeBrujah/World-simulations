@@ -1,22 +1,28 @@
-import Human from "./human.js";
+const humanClass = require('./human');
+const EYE_COLORS = humanClass.EYE_COLORS;
+const getRandomEyeColor = humanClass.getRandomEyeColor;
+const Human = humanClass.Human;
 
-export default class Man extends Human {
-    constructor(name, world){
+class Man extends Human {
+    constructor(name) {
         super();
         this.name = name;
-        this.world = world;
+        this.world = null;
         this.live();
     }
 
-    live(){
-        const life = setInterval(()=>{
+    live() {
+        const life = setInterval(() => {
             this.age++;
-            // console.log(this);
-            if(this.age === this.lifeDuration) {
-                console.log(`${this.name} went to heaven...`)
-                // console.log(this.populate);
+            if (this.age === this.lifeDuration) {
+                this.world.anotherWorld.push(this);
                 clearInterval(life);
+                this.world.population.splice(this.world.population.indexOf(this), 1)
             }
-        }, 100)
+        }, 500)
     }
+}
+
+module.exports = {
+    'Man': Man
 }

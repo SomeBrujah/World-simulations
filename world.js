@@ -1,13 +1,26 @@
-export default class World {
+class World {
     constructor(populate) {
-        this.populate = populate;
-        this.getStatistic();
+        this.population = [];
+        this.anotherWorld = [];
+        this.inicializeFirstHumanInWorld(populate);
+    }
+
+    inicializeFirstHumanInWorld(peoples){
+        for (let i = 0; i < peoples.length; i++) {
+            this.addCreature(peoples[i]);
+        }
+    }
+
+    addCreature(creature) {
+        creature.world = this;
+        this.population.push(creature);
     }
 
     getStatistic(){
-        setInterval(()=>{
-            console.log(this.populate);
-        }, 5000)
+        return this;
     }
 }
 
+module.exports = {
+    'World':World
+}

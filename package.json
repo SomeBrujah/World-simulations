@@ -8,5 +8,12 @@
   },
   "author": "Kyryliuk Maxym",
   "license": "ISC",
-  "type": "module"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SomeBrujah/world_simulations.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SomeBrujah/world_simulations/issues"
+  },
+  "homepage": "https://github.com/SomeBrujah/world_simulations#readme"
 }
