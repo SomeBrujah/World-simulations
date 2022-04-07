@@ -1,3 +1,6 @@
+const { Man } = require("./man");
+const { Woman } = require("./woman");
+
 class World {
     constructor(populate) {
         this.population = [];
@@ -5,7 +8,7 @@ class World {
         this.inicializeFirstHumanInWorld(populate);
     }
 
-    inicializeFirstHumanInWorld(peoples){
+    inicializeFirstHumanInWorld(peoples) {
         for (let i = 0; i < peoples.length; i++) {
             this.addCreature(peoples[i]);
         }
@@ -16,11 +19,22 @@ class World {
         this.population.push(creature);
     }
 
-    getStatistic(){
-        return this;
+    getStatistic() {
+        const stat = {
+            population: this.population.length,
+            inAnotherWorld: this.anotherWorld.length,
+            women: this.population.filter((person)=>{ return person instanceof Woman}).length,
+            men:this.population.filter((person)=>{ return person instanceof Man}).length,
+            brown:this.population.filter((person)=>{ return person.eyeColor === 'brown'}).length,
+            green:this.population.filter((person)=>{ return person.eyeColor === 'green'}).length,
+            gray:this.population.filter((person)=>{ return person.eyeColor === 'gray'}).length,
+            blue:this.population.filter((person)=>{ return person.eyeColor === 'blue'}).length,
+            hazel:this.population.filter((person)=>{ return person.eyeColor === 'hazel'}).length,
+        }
+        return stat;
     }
 }
 
 module.exports = {
-    'World':World
+    World
 }

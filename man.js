@@ -1,7 +1,4 @@
-const humanClass = require('./human');
-const EYE_COLORS = humanClass.EYE_COLORS;
-const getRandomEyeColor = humanClass.getRandomEyeColor;
-const Human = humanClass.Human;
+const { Human } = require('./human');
 
 class Man extends Human {
     constructor(name) {
@@ -24,5 +21,5 @@ class Man extends Human {
 }
 
 module.exports = {
-    'Man': Man
+    Man
 }

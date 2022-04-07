@@ -1,8 +1,7 @@
-const helpFunctions = require('./helpFunction')
-const EYE_COLORS = helpFunctions.EYE_COLORS;
-const getRandomEyeColor = helpFunctions.getRandomEyeColor;
+const { EYE_COLORS } = require('./helpFunction');
+const { getRandomEyeColor } = require('./helpFunction');
 
-class Human{
+class Human {
     constructor() {
         this.age = 0;
         this.lifeDuration = 100 - Math.floor(Math.random() * 20);
@@ -12,7 +11,7 @@ class Human{
 }
 
 module.exports = {
-    'EYE_COLORS': EYE_COLORS,
-    'getRandomEyeColor': getRandomEyeColor,
-    'Human' : Human
+    EYE_COLORS,
+    getRandomEyeColor,
+    Human
 }

@@ -39,12 +39,12 @@ function getRandomGender() {
 }
 
 module.exports = {
-    'WOMAN_NAMES': WOMAN_NAMES,
-    'MAN_NAMES': MAN_NAMES,
-    'EYE_COLORS': EYE_COLORS,
-    'getRandomEyeColor': getRandomEyeColor,
-    'getRandomManName': getRandomManName,
-    'getRandomWomanName': getRandomWomanName,
-    'defineChildEyeColor': defineChildEyeColor,
-    'getRandomGender': getRandomGender
+    WOMAN_NAMES,
+    MAN_NAMES,
+    EYE_COLORS,
+    getRandomEyeColor,
+    getRandomManName,
+    getRandomWomanName,
+    defineChildEyeColor,
+    getRandomGender
 }

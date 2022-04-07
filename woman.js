@@ -1,15 +1,6 @@
-const humanClassJS = require('./human');
-const helpFunctionJS = require('./helpFunction');
 const { Man } = require('./man');
-const WOMAN_NAMES = helpFunctionJS.WOMAN_NAMES;
-const MAN_NAMES = helpFunctionJS.MAN_NAMES;
-const EYE_COLORS = humanClassJS.EYE_COLORS;
-const { getRandomGender } = require('./helpFunction');
-const getRandomEyeColor = humanClassJS.getRandomEyeColor;
-const getRandomManName = helpFunctionJS.getRandomManName;
-const getRandomWomanName = helpFunctionJS.getRandomWomanName;
-const defineChildEyeColor = helpFunctionJS.defineChildEyeColor;
-const Human = humanClassJS.Human;
+const { WOMAN_NAMES, MAN_NAMES, EYE_COLORS, getRandomGender, getRandomManName, getRandomWomanName, defineChildEyeColor } = require('./helpFunction');
+const { Human } = require('./human');
 
 class Woman extends Human {
     constructor(name) {
@@ -29,7 +20,7 @@ class Woman extends Human {
                 this.world.population.splice(this.world.population.indexOf(this), 1)
             }
             if (this.age >= 18 && this.age < 50) {
-                if (this.wasPregnantAge !== null && this.age !== this.wasPregnantAge+4) {
+                if (this.wasPregnantAge !== null && this.age !== this.wasPregnantAge + 4) {
                     return;
                 }
                 this.reproduce();
@@ -60,5 +51,5 @@ class Woman extends Human {
 }
 
 module.exports = {
-    'Woman': Woman
+    Woman
 }
