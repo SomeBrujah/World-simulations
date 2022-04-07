@@ -1,6 +1,6 @@
 const WOMAN_NAMES = ['Maria', 'Jessy', 'Moira', 'Ann', 'Dafni', 'Rose'];
 const MAN_NAMES = ['James', 'Joshua', 'Jack', 'Mat', 'Tom', 'Max'];
-const EYE_COLORS = ['brown', 'blue', 'green', 'grey', 'hazel'];
+const EYE_COLORS = ['brown', 'blue', 'green', 'gray', 'hazel'];
 
 function getRandomEyeColor(colors) {
     return colors[Math.floor(Math.random() * (colors.length))];
